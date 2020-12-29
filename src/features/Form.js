@@ -1,5 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+
+import { withRouter } from "react-router";
 
 const SearchForm = styled.form`
   min-height: calc(100vh - 100px);
@@ -50,6 +54,11 @@ const Input = styled.input`
   transition-property: all;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
+  outline: none;
+
+  &:hover {
+    border: 1px solid #5c75f6;
+  }
 `;
 
 const SearchDiv = styled.div`
@@ -108,21 +117,47 @@ const RandomiseUser = styled.a`
   }
 `;
 
-function Form() {
+const Error = styled.span`
+  color: #fe4444;
+`;
+const validationSchema = Yup.object().shape({
+  login: Yup.string().required("Please enter a username"),
+});
+
+function Form(props) {
+  const formik = useFormik({
+    initialValues: {
+      login: "",
+    },
+    onSubmit,
+    validationSchema,
+  });
+
+  function onSubmit(values) {
+    console.log("Login", values);
+    props.history.push(`/${values.login}`);
+  }
+
   return (
-    <SearchForm>
+    <SearchForm onSubmit={formik.handleSubmit}>
       <Logo></Logo>
       <Label>Discover who's upto what...</Label>
       <SearchDiv>
         <SearchDivChild>github.com/</SearchDivChild>
-        <Input placeholder="Enter Github username" />
+        <Input
+          placeholder="Enter Github username"
+          onChange={formik.handleChange}
+          value={formik.values.login}
+          name="login"
+        />
         <SubmitButton type="submit">Search</SubmitButton>
       </SearchDiv>
       <SecondaryButton>
         <RandomiseUser>Randomise User?</RandomiseUser>
       </SecondaryButton>
+      <Error>{formik.errors.login}</Error>
     </SearchForm>
   );
 }
 
-export default Form;
+export default withRouter(Form);
