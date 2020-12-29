@@ -1,6 +1,18 @@
 import React from "react";
 import styled from "styled-components";
 
+const SearchForm = styled.form`
+  min-height: calc(100vh - 100px);
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+`;
+
 const Logo = styled.div`
   margin-bottom: 0.75em;
   height: 40px;
@@ -14,24 +26,14 @@ const Logo = styled.div`
   padding: 0;
   font-size: 100%;
   font: inherit;
-  /* vertical-align: baseline; */
 `;
 
 const Label = styled.label`
-  /* margin-bottom: 4em; */
+  margin-bottom: 4em;
   color: #333;
   font-size: 0.75em;
-  /* margin: 0;
-  padding: 0;
-  border: 0; */
-  /* font: inherit; */
-  /* vertical-align: baseline; */
   display: block;
   margin-block-start: 1em;
-  margin-block-end: 1em;
-  /* margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  box-sizing: border-box; */
 `;
 
 const Input = styled.input`
@@ -108,18 +110,18 @@ const RandomiseUser = styled.a`
 
 function Form() {
   return (
-    <form>
+    <SearchForm>
       <Logo></Logo>
       <Label>Discover who's upto what...</Label>
       <SearchDiv>
-        <SearchDivChild>github.com</SearchDivChild>
+        <SearchDivChild>github.com/</SearchDivChild>
         <Input placeholder="Enter Github username" />
         <SubmitButton type="submit">Search</SubmitButton>
       </SearchDiv>
       <SecondaryButton>
         <RandomiseUser>Randomise User?</RandomiseUser>
       </SecondaryButton>
-    </form>
+    </SearchForm>
   );
 }
 
