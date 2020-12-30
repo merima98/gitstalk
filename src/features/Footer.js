@@ -44,8 +44,8 @@ function Footer() {
   return (
     <Wrapper>
       <Paragrapf>Stalking? I call it social research.</Paragrapf>
-      <Link href="https://github.com/thelittlewonder/gitstalk">
-        <LabelLink>✏️ thelittlewonder/gitstalk</LabelLink>
+      <Link href="https://github.com/merima98/gitstalk">
+        <LabelLink>✏️ merima98/gitstalk</LabelLink>
         <Icon></Icon>
       </Link>
     </Wrapper>
