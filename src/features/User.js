@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import NotFound from "./NotFound";
+
 function User() {
   const [data, setData] = useState([]);
   const [isError, setIsError] = useState(false);
@@ -24,7 +26,7 @@ function User() {
   return (
     <div>
       {isError ? (
-        <p>Not found</p>
+        <NotFound />
       ) : (
         <div>
           <ul>{data.login}</ul>
