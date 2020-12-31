@@ -22,6 +22,9 @@ const SideBarContainer = styled.div`
 
 const Name = styled.div`
   background-color: #fff;
+  margin-bottom: 1rem;
+  border: 2px solid #f7f7f7;
+  padding: 10px;
 `;
 
 const Heading = styled.h1`
@@ -29,7 +32,7 @@ const Heading = styled.h1`
   color: #333;
   font-family: Rubik;
   display: inline;
-  margin: 0;
+  margin-right: 10px;
 `;
 
 const SideBar = styled.div`
@@ -111,7 +114,7 @@ function User() {
 
   return (
     <Wrapper>
-      <Header />
+      <Header username={params.login} />
       {isError ? (
         <NotFound />
       ) : (
