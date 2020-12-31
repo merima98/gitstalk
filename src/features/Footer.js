@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
+import { BREAKPOINTS } from "../constants";
+
 const Wrapper = styled.div`
   font-size: 0.75em;
   letter-spacing: 0.01em;
   text-align: center;
-  @media screen and (min-width: 768px) {
+  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     padding-top: 3em;
   }
 `;

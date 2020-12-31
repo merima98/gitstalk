@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
+import styled from "styled-components";
+
 import NotFound from "./NotFound";
+import Header from "./Header";
+
+const Wrapper = styled.div`
+  padding-top: 32px;
+  padding-left: 15rem;
+  padding-right: 15rem;
+`;
 
 function User() {
   const [data, setData] = useState([]);
@@ -17,6 +26,7 @@ function User() {
 
       if (data.message === "Not Found") {
         setIsError(true);
+        console.log(isError);
       }
       setData(data);
     } catch (error) {
@@ -24,7 +34,8 @@ function User() {
     }
   }, [setData]);
   return (
-    <div>
+    <Wrapper>
+      <Header />
       {isError ? (
         <NotFound />
       ) : (
@@ -32,7 +43,7 @@ function User() {
           <ul>{data.login}</ul>
         </div>
       )}
-    </div>
+    </Wrapper>
   );
 }
 
