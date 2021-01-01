@@ -112,27 +112,131 @@ const Activities = styled.div`
   padding: 10px;
   height: 52px;
 `;
-const ListEvents = styled.div`
-  padding: 0px 0px 0px 2.5px;
-  display: grid;
-  /* grid-template-columns: repeat(2, 1fr); */
-  grid-auto-rows: 30px;
+
+const Events = styled.div`
+  color: #000;
+  font-family: Rubik;
+  padding: 12px 0px;
+  height: 50px;
 `;
 
+const EventsText = styled.p`
+  color: #666;
+  font-size: 16px;
+  margin-right: 8px;
+  font-family: Rubik;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #f7f7f7;
+`;
+
+const EventsLink = styled.a`
+  color: #5c75f6;
+  font-size: 16px;
+  font-family: Rubik;
+  text-decoration: none;
+`;
+function add(
+  eventTypeValue,
+  repoName,
+  commitNumber = null,
+  branch = null,
+  db = null
+) {
+  let returnEventTypeValue;
+  if (eventTypeValue === "PushEvent") {
+    returnEventTypeValue = (
+      <Events>
+        <EventsText>
+          Pushed {commitNumber} commit in{" "}
+          <EventsLink href={`https://github.com/${repoName}`}>
+            {repoName}
+          </EventsLink>
+        </EventsText>
+      </Events>
+    );
+  }
+  if (eventTypeValue === "CreateEvent") {
+    returnEventTypeValue = (
+      <Events>
+        <EventsText>
+          Created a repository{" "}
+          <EventsLink href={`https://github.com/${repoName}`}>
+            {repoName}
+          </EventsLink>
+        </EventsText>
+      </Events>
+    );
+  }
+
+  if (eventTypeValue === "IssueCommentEvent") {
+    returnEventTypeValue = (
+      <Events>
+        <EventsText>
+          Created a comment on an issue in{" "}
+          <EventsLink href={`https://github.com/${repoName}`}>
+            {repoName}
+          </EventsLink>
+        </EventsText>
+      </Events>
+    );
+  }
+
+  if (eventTypeValue === "WatchEvent") {
+    returnEventTypeValue = (
+      <Events>
+        <EventsText>
+          Starred a repo{" "}
+          <EventsLink href={`https://github.com/${repoName}`}>
+            {repoName}
+          </EventsLink>
+        </EventsText>
+      </Events>
+    );
+  }
+
+  if (eventTypeValue === "DeleteEvent") {
+    returnEventTypeValue = (
+      <Events>
+        <EventsText>
+          Deleted a {branch} {db} from{" "}
+          <EventsLink href={`https://github.com/${repoName}`}>
+            {repoName}
+          </EventsLink>
+        </EventsText>
+      </Events>
+    );
+  }
+
+  if (eventTypeValue === "PullRequestEvent") {
+    returnEventTypeValue = (
+      <Events>
+        <EventsText>
+          Closed a pull request in{" "}
+          <EventsLink href={`https://github.com/${repoName}`}>
+            {repoName}
+          </EventsLink>
+        </EventsText>
+      </Events>
+    );
+  }
+
+  return returnEventTypeValue;
+}
 function User() {
   const [data, setData] = useState([]);
   const [events, setEvents] = useState([]);
+  const [starred, setStarred] = useState([]);
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
   const [isError, setIsError] = useState(false);
   const params = useParams();
 
   useEffect(async () => {
     try {
-      // const response = await fetch(
-      //   `https://api.github.com/users/${params.login}`
-      // );
-      // const data = await response.json();
-
-      const data = "merima";
+      const response = await fetch(
+        `https://api.github.com/users/${params.login}`
+      );
+      const data = await response.json();
 
       if (data.message === "Not Found") {
         setIsError(true);
@@ -140,30 +244,32 @@ function User() {
       }
       setData(data);
       const responseEvents = await fetch(
-        `https://api.github.com/users/merima98/events`
+        `https://api.github.com/users/${params.login}/events`
       );
-
       const dataEvents = await responseEvents.json();
       setEvents(dataEvents);
+
+      const responseStarred = await fetch(
+        `https://api.github.com/users/${params.login}/starred`
+      );
+      const dataStarred = await responseStarred.json();
+      setStarred(dataStarred);
+
+      const responseFollowers = await fetch(
+        `https://api.github.com/users/${params.login}/followers`
+      );
+      const dataFollowers = await responseFollowers.json();
+      setFollowers(dataFollowers);
+
+      const responseFollowing = await fetch(
+        `https://api.github.com/users/${params.login}/following`
+      );
+      const dataFollowing = await responseFollowing.json();
+      setFollowing(dataFollowing);
     } catch (error) {
       setIsError(true);
     }
   }, [setData]);
-  function add(vrijednost, repoName) {
-    let returnVrijednost;
-    if (vrijednost === "PushEvent") {
-      returnVrijednost = "Pushed";
-    }
-    if (vrijednost === "CreateEvent") {
-      returnVrijednost = (
-        <p>
-          Created a repository{" "}
-          <a href={`https://github.com/${repoName}`}>{repoName}</a>
-        </p>
-      );
-    }
-    return returnVrijednost;
-  }
   return (
     <Wrapper>
       <Header username={params.login} />
@@ -173,25 +279,23 @@ function User() {
         <Container>
           <SideBarContainer>
             <Name>
-              {/* <Heading>{data.name}</Heading> */}
-              <Heading>Merima Ceranic</Heading>
-              {/* <Profile href={`https://github.com/${data.login}`}> */}
-              <Profile href={`https://github.com/${"merima98"}`}>
+              <Heading>{data.name}</Heading>
+              <Profile href={`https://github.com/${data.login}`}>
                 <ArrowUpRight />
               </Profile>
             </Name>
             <SideBar>
               <List>
                 <Item>Followers</Item>
-                <Numbers>1</Numbers>
+                <Numbers> {followers.length}</Numbers>
               </List>
               <List>
                 <Item>Following</Item>
-                <Numbers>5</Numbers>
+                <Numbers>{following.length}</Numbers>
               </List>
               <List>
                 <Item>Stars Received</Item>
-                <Numbers>2</Numbers>
+                <Numbers>{starred.length}</Numbers>
               </List>
               <List>
                 <Item>Forks by user</Item>
@@ -202,18 +306,15 @@ function User() {
             <SideBar>
               <ListLocation>
                 <Loacation>Joined</Loacation>
-                {/* <DateData>{data.created_at}</DateData> */}
-                <DateData>31.12.2020</DateData>
+                <DateData>{data.created_at}</DateData>
               </ListLocation>
               <ListLocation>
                 <Loacation>Loacation</Loacation>
 
-                {/* <LocationData>{data.location}</LocationData> */}
-                <LocationData>Bosnia and Herzegovina</LocationData>
+                <LocationData>{data.location}</LocationData>
               </ListLocation>
               <ListLocation>
-                {/* <Item>Last update on {data.updated_at}</Item> */}
-                <Item>Last update on 31.12.2020</Item>
+                <Item>Last update on {data.updated_at}</Item>
               </ListLocation>
             </SideBar>
           </SideBarContainer>
@@ -221,15 +322,19 @@ function User() {
             <Activities>
               <LatestActivities>LATEST ACTIVITIES</LatestActivities>
               {console.log(events)}
-              <ListEvents>
-                {events.map((event) => {
-                  return (
-                    <span key={event.id}>
-                      {add(event.type, event.repo.name)}
-                    </span>
-                  );
-                })}
-              </ListEvents>
+              {events.map((event) => {
+                return (
+                  <span key={event.id}>
+                    {add(
+                      event.type,
+                      event.repo.name,
+                      event.payload.size,
+                      event.payload.ref_type,
+                      event.payload.ref
+                    )}
+                  </span>
+                );
+              })}
             </Activities>
           </ActivitiesContainer>
         </Container>
