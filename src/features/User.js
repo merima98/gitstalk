@@ -269,7 +269,8 @@ function User() {
     } catch (error) {
       setIsError(true);
     }
-  }, [setData]);
+  }, [setData, params.login]);
+
   return (
     <Wrapper>
       <Header username={params.login} />
