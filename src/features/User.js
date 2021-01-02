@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-
+import { ArrowUpRight } from "react-feather";
 import styled from "styled-components";
 
 import NotFound from "./NotFound";
 import Header from "./Header";
-import { ArrowUpRight } from "react-feather";
+import Footer from "./Footer";
 
 const Wrapper = styled.div`
   padding-top: 32px;
@@ -17,7 +17,6 @@ const SideBarContainer = styled.div`
   color: #000;
   font-size: 1rem;
   font-family: Rubik;
-  width: 275px;
 `;
 
 const Name = styled.div`
@@ -93,24 +92,14 @@ const Profile = styled.a`
 
 const Container = styled.div`
   display: grid;
-  grid-template-columns: 30% 65%;
-  grid-gap: 5%;
-`;
-
-const ActivitiesContainer = styled.div``;
-const LatestActivities = styled.h2`
-  font-size: 18px;
-  color: #333;
-  font-family: Rubik;
-  display: inline;
-  padding: 10px;
+  grid-template-columns: 1fr 2fr;
+  grid-gap: 1rem;
 `;
 
 const Activities = styled.div`
   background-color: #fff;
   border: 2px solid #f7f7f7;
   padding: 10px;
-  height: 52px;
 `;
 
 const Events = styled.div`
@@ -319,27 +308,25 @@ function User() {
               </ListLocation>
             </SideBar>
           </SideBarContainer>
-          <ActivitiesContainer>
-            <Activities>
-              <LatestActivities>LATEST ACTIVITIES</LatestActivities>
-              {console.log(events)}
-              {events.map((event) => {
-                return (
-                  <span key={event.id}>
-                    {add(
-                      event.type,
-                      event.repo.name,
-                      event.payload.size,
-                      event.payload.ref_type,
-                      event.payload.ref
-                    )}
-                  </span>
-                );
-              })}
-            </Activities>
-          </ActivitiesContainer>
+          <Activities>
+            <Heading>LATEST ACTIVITIES</Heading>
+            {events.map((event) => {
+              return (
+                <span key={event.id}>
+                  {add(
+                    event.type,
+                    event.repo.name,
+                    event.payload.size,
+                    event.payload.ref_type,
+                    event.payload.ref
+                  )}
+                </span>
+              );
+            })}
+          </Activities>
         </Container>
       )}
+      <Footer />
     </Wrapper>
   );
 }
