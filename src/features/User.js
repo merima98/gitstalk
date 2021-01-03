@@ -229,7 +229,6 @@ function User() {
 
       if (data.message === "Not Found") {
         setIsError(true);
-        console.log(isError);
       }
       setData(data);
       const responseEvents = await fetch(
