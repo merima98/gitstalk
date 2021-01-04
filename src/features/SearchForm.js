@@ -38,7 +38,7 @@ const SearchButton = styled.button`
   font-family: Roboto;
   border: none;
   letter-spacing: 0.01em;
-
+  outline: none;
   width: 93px;
   height: 36px;
 `;
@@ -73,7 +73,6 @@ function SearchForm(props) {
         />
         <SearchButton type="submit">Search</SearchButton>
       </form>
-      <Error>{formik.errors.login}</Error>
     </Wrapper>
   );
 }

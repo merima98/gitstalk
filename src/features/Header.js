@@ -5,9 +5,9 @@ import { useHistory, useParams, NavLink } from "react-router-dom";
 import SearchForm from "./SearchForm";
 
 const Wrapper = styled.header`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-gap: 13.2rem;
   margin-bottom: 20px;
 `;
 
