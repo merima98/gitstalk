@@ -214,9 +214,6 @@ function add(
 function User() {
   const [data, setData] = useState([]);
   const [events, setEvents] = useState([]);
-  const [starred, setStarred] = useState([]);
-  const [followers, setFollowers] = useState([]);
-  const [following, setFollowing] = useState([]);
   const [isError, setIsError] = useState(false);
   const params = useParams();
 
@@ -236,24 +233,6 @@ function User() {
       );
       const dataEvents = await responseEvents.json();
       setEvents(dataEvents);
-
-      const responseStarred = await fetch(
-        `https://api.github.com/users/${params.login}/starred`
-      );
-      const dataStarred = await responseStarred.json();
-      setStarred(dataStarred);
-
-      const responseFollowers = await fetch(
-        `https://api.github.com/users/${params.login}/followers`
-      );
-      const dataFollowers = await responseFollowers.json();
-      setFollowers(dataFollowers);
-
-      const responseFollowing = await fetch(
-        `https://api.github.com/users/${params.login}/following`
-      );
-      const dataFollowing = await responseFollowing.json();
-      setFollowing(dataFollowing);
     } catch (error) {
       setIsError(true);
     }
@@ -276,19 +255,19 @@ function User() {
             <SideBar>
               <List>
                 <Item>Followers</Item>
-                <Numbers> {followers.length}</Numbers>
+                <Numbers>{data.followers}</Numbers>
               </List>
               <List>
                 <Item>Following</Item>
-                <Numbers>{following.length}</Numbers>
+                <Numbers>{data.following}</Numbers>
               </List>
               <List>
-                <Item>Stars Received</Item>
-                <Numbers>{starred.length}</Numbers>
+                <Item>Gists</Item>
+                <Numbers>{data.public_gists}</Numbers>
               </List>
               <List>
-                <Item>Forks by user</Item>
-                <Numbers>5</Numbers>
+                <Item>Repos</Item>
+                <Numbers>{data.public_repos}</Numbers>
               </List>
             </SideBar>
 
@@ -299,7 +278,6 @@ function User() {
               </ListLocation>
               <ListLocation>
                 <Loacation>Loacation</Loacation>
-
                 <LocationData>{data.location}</LocationData>
               </ListLocation>
               <ListLocation>
