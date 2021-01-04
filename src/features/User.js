@@ -156,7 +156,6 @@ function add(
       </Events>
     );
   }
-
   if (eventTypeValue === "IssueCommentEvent") {
     returnEventTypeValue = (
       <Events>
@@ -169,7 +168,6 @@ function add(
       </Events>
     );
   }
-
   if (eventTypeValue === "WatchEvent") {
     returnEventTypeValue = (
       <Events>
@@ -182,7 +180,6 @@ function add(
       </Events>
     );
   }
-
   if (eventTypeValue === "DeleteEvent") {
     returnEventTypeValue = (
       <Events>
@@ -195,7 +192,6 @@ function add(
       </Events>
     );
   }
-
   if (eventTypeValue === "PullRequestEvent") {
     returnEventTypeValue = (
       <Events>
@@ -208,7 +204,6 @@ function add(
       </Events>
     );
   }
-
   return returnEventTypeValue;
 }
 function User() {
@@ -248,8 +243,13 @@ function User() {
           <SideBarContainer>
             <Name>
               <Heading>{data.name}</Heading>
-              <Profile href={`https://github.com/${data.login}`}>
-                <ArrowUpRight />
+              <Profile
+                href={`https://github.com/${data.login}`}
+                target="_blank"
+              >
+                <ArrowUpRight
+                  style={{ width: "14px", height: "14px", color: "#5c75f6" }}
+                />
               </Profile>
             </Name>
             <SideBar>
@@ -270,7 +270,6 @@ function User() {
                 <Numbers>{data.public_repos}</Numbers>
               </List>
             </SideBar>
-
             <SideBar>
               <ListLocation>
                 <Loacation>Joined</Loacation>

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 
 import SearchForm from "./SearchForm";
 
@@ -11,13 +11,7 @@ const Wrapper = styled.header`
   margin-bottom: 20px;
 `;
 
-const Logo = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const Link = styled.a`
+const Link = styled(NavLink)`
   position: relative;
   text-decoration: none;
   display: inline-block;
@@ -40,9 +34,9 @@ function Header() {
 
   return (
     <Wrapper>
-      <Logo>
-        <Link href="https://github.com/merima98/gitstalk">Gits Talk</Link>
-      </Logo>
+      <Link exact to="/">
+        GITSTALK
+      </Link>
       <SearchForm username={login} onSubmit={onSubmit} />
     </Wrapper>
   );
