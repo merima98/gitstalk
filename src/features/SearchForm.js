@@ -35,7 +35,7 @@ const SearchButton = styled.button`
   font-size: 1em;
   border-radius: 2px;
   color: #fff;
-  font-family: Rubik;
+  font-family: Roboto;
   border: none;
   letter-spacing: 0.01em;
 

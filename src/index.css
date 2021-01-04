@@ -9,8 +9,3 @@ body {
 *:after {
   box-sizing: border-box;
 }
-
-@font-face {
-  font-family: "Rubik";
-  src: local("Rubik"), url(./fonts/Rubik-Regular.ttf) format("truetype");
-}

@@ -28,14 +28,14 @@ const Message = styled.h2`
   font-size: 1.5em;
   letter-spacing: 0.01em;
   color: #333;
-  font-family: Rubik;
+  font-family: Roboto;
 `;
 
 const SecondMessage = styled.h3`
   line-height: 1.5em;
   font-size: 1em;
   color: #ccc;
-  font-family: Rubik;
+  font-family: Roboto;
 `;
 
 function NotFound() {

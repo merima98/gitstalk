@@ -16,7 +16,7 @@ const Link = styled(NavLink)`
   text-decoration: none;
   display: inline-block;
   color: #000;
-  font-family: Rubik;
+  font-family: Roboto;
   font-size: 32px;
   margin-right: 2rem;
   cursor: pointer;

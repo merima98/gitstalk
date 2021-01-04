@@ -16,13 +16,13 @@ const Wrapper = styled.div`
 
 const Logo = styled.div`
   margin-bottom: 0.75em;
-  font-size: 3rem;
+  font-size: 2rem;
   display: block;
   border: none;
   outline: none;
   margin: 0;
   padding: 0;
-  font-family: Rubik;
+  font-family: Roboto;
 `;
 
 const Label = styled.label`
@@ -43,7 +43,7 @@ function Form() {
   return (
     <Wrapper>
       <Logo>
-        Gits Talk <GitHub />
+        GITSTALK <GitHub />
       </Logo>
       <Label>Discover who's upto what...</Label>
       <SearchForm onSubmit={onSubmit} />

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { ArrowUpRight } from "react-feather";
 import styled from "styled-components";
+import { format } from "date-fns";
 
 import NotFound from "./NotFound";
 import Header from "./Header";
@@ -16,7 +17,7 @@ const Wrapper = styled.div`
 const SideBarContainer = styled.div`
   color: #000;
   font-size: 1rem;
-  font-family: Rubik;
+  font-family: Roboto;
 `;
 
 const Name = styled.div`
@@ -29,7 +30,7 @@ const Name = styled.div`
 const Heading = styled.h1`
   font-size: 1rem;
   color: #333;
-  font-family: Rubik;
+  font-family: Roboto;
   display: inline;
   margin-right: 10px;
 `;
@@ -45,7 +46,7 @@ const SideBar = styled.div`
 const Item = styled.h3`
   color: #888;
   font-size: 14px;
-  font-family: Rubik;
+  font-family: Roboto;
 `;
 const Numbers = styled.p`
   color: #555;
@@ -68,19 +69,22 @@ const ListLocation = styled.div`
 const Loacation = styled.h4`
   color: #888;
   font-size: 12px;
-  font-family: Rubik;
+  font-family: Roboto;
+
   margin: 0px 0px 1px 0px;
 `;
 
 const DateData = styled.p`
   color: #555;
-  font-family: Rubik;
+  font-family: Roboto;
+
   font-size: 14px;
 `;
 
 const LocationData = styled.p`
   color: #5c75f6;
-  font-family: Rubik;
+  font-family: Roboto;
+
   font-size: 14px;
 `;
 
@@ -104,7 +108,8 @@ const Activities = styled.div`
 
 const Events = styled.div`
   color: #000;
-  font-family: Rubik;
+  font-family: Roboto;
+
   padding: 12px 0px;
   height: 50px;
 `;
@@ -113,7 +118,8 @@ const EventsText = styled.p`
   color: #666;
   font-size: 16px;
   margin-right: 8px;
-  font-family: Rubik;
+  font-family: Roboto;
+
   padding-bottom: 5px;
   border-bottom: 1px solid #f7f7f7;
 `;
@@ -121,7 +127,8 @@ const EventsText = styled.p`
 const EventsLink = styled.a`
   color: #5c75f6;
   font-size: 16px;
-  font-family: Rubik;
+  font-family: Roboto;
+
   text-decoration: none;
 `;
 function add(
@@ -211,6 +218,8 @@ function User() {
   const [events, setEvents] = useState([]);
   const [isError, setIsError] = useState(false);
   const params = useParams();
+  const [createdDate, setCreatedDate] = useState([]);
+  const [lastUpdateDate, setLastUpdateDate] = useState([]);
 
   useEffect(async () => {
     try {
@@ -228,6 +237,8 @@ function User() {
       );
       const dataEvents = await responseEvents.json();
       setEvents(dataEvents);
+      setCreatedDate(format(new Date(data.created_at), "PP"));
+      setLastUpdateDate(format(new Date(data.updated_at), "PP"));
     } catch (error) {
       setIsError(true);
     }
@@ -273,14 +284,14 @@ function User() {
             <SideBar>
               <ListLocation>
                 <Loacation>Joined</Loacation>
-                <DateData>{data.created_at}</DateData>
+                <DateData>{createdDate}</DateData>
               </ListLocation>
               <ListLocation>
                 <Loacation>Loacation</Loacation>
                 <LocationData>{data.location}</LocationData>
               </ListLocation>
               <ListLocation>
-                <Item>Last update on {data.updated_at}</Item>
+                <Item>Last update on {lastUpdateDate}</Item>
               </ListLocation>
             </SideBar>
           </SideBarContainer>
