@@ -18,6 +18,11 @@ const Paragrapf = styled.p`
   margin-bottom: 0.5em;
   letter-spacing: 0.01em;
   text-align: center;
+  font-size: 0.7rem;
+
+  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
+    font-size: 1rem;
+  }
 `;
 
 const Link = styled.a`
@@ -26,6 +31,11 @@ const Link = styled.a`
   position: relative;
   text-decoration: none;
   display: inline-block;
+  font-size: 0.7rem;
+
+  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
+    font-size: 1rem;
+  }
 `;
 
 const LabelLink = styled.span`

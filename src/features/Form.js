@@ -4,6 +4,7 @@ import { useHistory, withRouter } from "react-router";
 import { GitHub } from "react-feather";
 
 import SearchForm from "./SearchForm";
+import { BREAKPOINTS } from "../constants";
 
 const Wrapper = styled.div`
   min-height: calc(100vh - 100px);
@@ -16,21 +17,17 @@ const Wrapper = styled.div`
 
 const Logo = styled.div`
   margin-bottom: 0.75em;
-  font-size: 2rem;
-  display: block;
-  border: none;
-  outline: none;
-  margin: 0;
-  padding: 0;
-  font-family: Roboto;
+  font-size: 1.5rem;
+  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
+    font-size: 2rem;
+  }
 `;
 
 const Label = styled.label`
   margin-bottom: 4em;
   color: #333;
   font-size: 0.75em;
-  display: block;
-  margin-block-start: 1em;
+  display: flex;
 `;
 
 function Form() {
