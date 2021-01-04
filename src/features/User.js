@@ -213,6 +213,14 @@ function add(
   }
   return returnEventTypeValue;
 }
+
+const Image = styled.img`
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  border-radius: 50%;
+`;
+
 function User() {
   const [data, setData] = useState([]);
   const [events, setEvents] = useState([]);
@@ -253,6 +261,7 @@ function User() {
         <Container>
           <SideBarContainer>
             <Name>
+              <Image src={data.avatar_url} />
               <Heading>{data.name}</Heading>
               <Profile
                 href={`https://github.com/${data.login}`}
