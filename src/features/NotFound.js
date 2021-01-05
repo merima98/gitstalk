@@ -7,7 +7,6 @@ import { BREAKPOINTS } from "../constants";
 
 const ShowError = styled.div`
   border: 1px solid #f7f7f7;
-  box-sizing: border-box;
   border-radius: 2px;
   display: flex;
   background-color: #fff;
