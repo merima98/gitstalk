@@ -6,10 +6,7 @@ import * as Yup from "yup";
 import { BREAKPOINTS } from "../constants";
 
 const Wrapper = styled.header`
-  display: flex;
-  flex-direction: row;
   align-items: center;
-  margin-bottom: 20px;
 `;
 
 const Label = styled.label`
@@ -25,19 +22,13 @@ const Label = styled.label`
 
 const Input = styled.input`
   border: 1px solid #f1f1f1;
-  width: 110px;
+  width: 100%;
   font-size: 1em;
   padding: 8px 12px;
-  position: absolute;
-  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
-    width: 220px;
-    position: relative;
-  }
 `;
 
 const SearchButton = styled.button`
   top: 36px;
-  position: relative;
   cursor: pointer;
   background-color: #5c75f6;
   font-size: 1em;
@@ -47,7 +38,7 @@ const SearchButton = styled.button`
   letter-spacing: 0.01em;
   height: 36px;
   outline: none;
-  width: 110px;
+  width: 100%;
 
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     top: 0;
@@ -56,6 +47,11 @@ const SearchButton = styled.button`
 `;
 const Form = styled.form`
   display: flex;
+  flex-direction: column;
+
+  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
+    flex-direction: row;
+  }
 `;
 const validationSchema = Yup.object().shape({
   login: Yup.string(),

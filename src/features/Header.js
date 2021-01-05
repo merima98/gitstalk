@@ -3,22 +3,25 @@ import styled from "styled-components";
 import { useHistory, useParams, NavLink } from "react-router-dom";
 
 import SearchForm from "./SearchForm";
+import { BREAKPOINTS } from "../constants";
 
 const Wrapper = styled.header`
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  grid-gap: 13.2rem;
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
 `;
 
 const Link = styled(NavLink)`
-  position: relative;
+  display: flex;
+  justify-content: center;
   text-decoration: none;
-  display: inline-block;
   color: #000;
-  font-family: Roboto;
   font-size: 32px;
-  margin-right: 2rem;
   cursor: pointer;
 `;
 

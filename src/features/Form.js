@@ -11,12 +11,18 @@ const Wrapper = styled.div`
   overflow: hidden;
   display: flex;
   flex-direction: column;
+
   align-items: center;
   justify-content: center;
+
+  /* @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
+    flex-direction: column;
+  } */
 `;
 
 const Logo = styled.div`
   margin-bottom: 0.75em;
+
   font-size: 1.5rem;
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     font-size: 2rem;

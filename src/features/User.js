@@ -7,17 +7,20 @@ import { format } from "date-fns";
 import NotFound from "./NotFound";
 import Header from "./Header";
 import Footer from "./Footer";
+import { BREAKPOINTS } from "../constants";
 
 const Wrapper = styled.div`
   padding-top: 32px;
-  padding-left: 15rem;
-  padding-right: 15rem;
+  margin-bottom: 50px;
+  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
+    padding-right: 7.5rem;
+    padding-left: 7.5rem;
+  }
 `;
 
 const SideBarContainer = styled.div`
   color: #000;
   font-size: 1rem;
-  font-family: Roboto;
 `;
 
 const Name = styled.div`
@@ -30,7 +33,6 @@ const Name = styled.div`
 const Heading = styled.h1`
   font-size: 1rem;
   color: #333;
-  font-family: Roboto;
   display: inline;
   margin-right: 10px;
 `;
@@ -45,46 +47,47 @@ const SideBar = styled.div`
 
 const Item = styled.h3`
   color: #888;
+  display: inline;
   font-size: 14px;
-  font-family: Roboto;
 `;
 const Numbers = styled.p`
   color: #555;
   font-size: 15px;
-  margin-left: 95px;
+
+  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
+    margin-left: 95px;
+  }
 `;
 
 const List = styled.div`
-  padding: 0px 0px 0px 2.5px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: 30px;
+  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
+    padding: 0px 0px 0px 2.5px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: 30px;
+  }
 `;
 
 const ListLocation = styled.div`
-  padding: 0px 0px 0px 2.5px;
-  display: grid;
+  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
+    padding: 0px 0px 0px 2.5px;
+    display: grid;
+  }
 `;
 
 const Loacation = styled.h4`
   color: #888;
   font-size: 12px;
-  font-family: Roboto;
-
   margin: 0px 0px 1px 0px;
 `;
 
 const DateData = styled.p`
   color: #555;
-  font-family: Roboto;
-
   font-size: 14px;
 `;
 
 const LocationData = styled.p`
   color: #5c75f6;
-  font-family: Roboto;
-
   font-size: 14px;
 `;
 
@@ -95,9 +98,13 @@ const Profile = styled.a`
 `;
 
 const Container = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  grid-gap: 1rem;
+  display: block;
+
+  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-gap: 1rem;
+  }
 `;
 
 const Activities = styled.div`
@@ -108,7 +115,6 @@ const Activities = styled.div`
 
 const Events = styled.div`
   color: #000;
-  font-family: Roboto;
 
   padding: 12px 0px;
   height: 50px;
@@ -127,7 +133,6 @@ const EventsText = styled.p`
 const EventsLink = styled.a`
   color: #5c75f6;
   font-size: 16px;
-  font-family: Roboto;
 
   text-decoration: none;
 `;
