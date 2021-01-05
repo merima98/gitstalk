@@ -6,11 +6,11 @@ import { format } from "date-fns";
 
 import NotFound from "./NotFound";
 import Header from "./Header";
-import Footer from "./Footer";
 import { BREAKPOINTS } from "../constants";
 
 const Wrapper = styled.div`
   overflow-x: hidden;
+  background-color: ${(props) => props.theme.colors.wrapperBackground};
 
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     padding: 64px 24px;
@@ -33,6 +33,7 @@ const Name = styled.div`
   display: flex;
   padding: 16px;
   align-items: center;
+  background-color: ${(props) => props.theme.colors.backgroundColor};
 `;
 
 const Heading = styled.h1`
@@ -43,7 +44,7 @@ const Heading = styled.h1`
 `;
 
 const SideBar = styled.div`
-  background-color: #fff;
+  background-color: ${(props) => props.theme.colors.backgroundColor};
   padding: 10px;
   border: 2px solid #f7f7f7;
   border-radius: 2px;
@@ -92,7 +93,7 @@ const DateData = styled.p`
 `;
 
 const LocationData = styled.p`
-  color: #5c75f6;
+  color: ${(props) => props.theme.colors.color};
   font-size: 14px;
 `;
 
@@ -113,6 +114,7 @@ const Container = styled.div`
 
 const Activities = styled.div`
   border: 2px solid #f7f7f7;
+  background-color: ${(props) => props.theme.colors.backgroundColor};
 `;
 
 const Events = styled.div`
@@ -220,7 +222,8 @@ const Image = styled.img`
   border-radius: 50%;
 `;
 
-function User() {
+function User(props) {
+  console.log(props);
   const [data, setData] = useState([]);
   const [events, setEvents] = useState([]);
   const [isError, setIsError] = useState(false);
@@ -330,7 +333,6 @@ function User() {
           </Activities>
         </Container>
       )}
-      <Footer />
     </Wrapper>
   );
 }

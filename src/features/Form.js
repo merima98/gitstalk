@@ -31,7 +31,7 @@ const Label = styled.label`
   display: flex;
 `;
 
-function Form() {
+function Form(props) {
   const history = useHistory();
 
   function onSubmit(vals) {

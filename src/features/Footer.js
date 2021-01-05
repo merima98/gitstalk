@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { BREAKPOINTS } from "../constants";
-import { Edit3 } from "react-feather";
+import { Edit3, Moon, Sun } from "react-feather";
 
 const Wrapper = styled.div`
   font-size: 0.75em;
@@ -43,15 +43,39 @@ const LabelLink = styled.span`
   align-items: center;
 `;
 
-function Footer() {
+const Temp = styled.div`
+  display: flex;
+  flex-direction: row;
+  grid-gap: 2px;
+  justify-content: center;
+`;
+
+function Footer(props) {
   return (
     <Wrapper>
       <Paragrapf>Stalking? I call it social research.</Paragrapf>
-      <Link href="https://github.com/merima98/gitstalk">
-        <LabelLink>
-          <Edit3 /> merima98/gitstalk
-        </LabelLink>
-      </Link>
+      <Temp>
+        <Link href="https://github.com/merima98/gitstalk">
+          <LabelLink>
+            <Edit3 /> merima98/gitstalk
+          </LabelLink>
+        </Link>
+        {props.isDarkMode ? (
+          <Sun
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              props.setIsDarkMode(!props.isDarkMode);
+            }}
+          />
+        ) : (
+          <Moon
+            style={{ cursor: "pointer" }}
+            onClick={() => {
+              props.setIsDarkMode(!props.isDarkMode);
+            }}
+          />
+        )}
+      </Temp>
     </Wrapper>
   );
 }

@@ -20,13 +20,15 @@ const Link = styled(NavLink)`
   justify-content: center;
   text-decoration: none;
   color: #000;
+
   font-size: 32px;
   cursor: pointer;
 `;
 
-function Header() {
+function Header(props) {
   const history = useHistory();
   const params = useParams();
+  console.log(props);
 
   function onSubmit(values) {
     history.push(`/${values.login}`);
