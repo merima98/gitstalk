@@ -80,6 +80,7 @@ function SearchForm(props) {
           name="login"
         />
         <SearchButton type="submit">Search</SearchButton>
+        {/* <Spinner animation="border" role="status" /> */}
       </Form>
     </Wrapper>
   );
