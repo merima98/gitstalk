@@ -2,15 +2,14 @@ import React, { useState } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 
-import Home from "./features/Home";
 import User from "./features/User";
 import Footer from "./features/Footer";
+import Home from "./features/Home";
 import { darkTheme, lightTheme } from "./themes/themes";
 
 function App() {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const theme = isDarkMode ? darkTheme : lightTheme;
-  console.log(isDarkMode);
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>

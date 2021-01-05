@@ -1,24 +1,23 @@
 import React from "react";
 import styled from "styled-components";
-
-import { BREAKPOINTS } from "../constants";
 import { Edit3, Moon, Sun } from "react-feather";
 
+import { BREAKPOINTS } from "../constants";
+
 const Wrapper = styled.div`
-  font-size: 0.75em;
   letter-spacing: 0.01em;
   text-align: center;
-  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
-    padding-top: 3em;
-  }
+  background-color: ${(props) => props.theme.colors.wrapperBackground};
 `;
 
 const Paragrapf = styled.p`
   color: #aaa;
+  margin-top: 0;
   margin-bottom: 0.5em;
   letter-spacing: 0.01em;
   text-align: center;
   font-size: 0.7rem;
+  background-color: ${(props) => props.theme.colors.wrapperBackground};
 
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     font-size: 1rem;
@@ -48,6 +47,8 @@ const Temp = styled.div`
   flex-direction: row;
   grid-gap: 2px;
   justify-content: center;
+  padding-bottom: 1rem;
+  background-color: ${(props) => props.theme.colors.wrapperBackground};
 `;
 
 function Footer(props) {
@@ -62,14 +63,14 @@ function Footer(props) {
         </Link>
         {props.isDarkMode ? (
           <Sun
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", color: "#fff" }}
             onClick={() => {
               props.setIsDarkMode(!props.isDarkMode);
             }}
           />
         ) : (
           <Moon
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer", color: "#000" }}
             onClick={() => {
               props.setIsDarkMode(!props.isDarkMode);
             }}

@@ -11,9 +11,10 @@ const Wrapper = styled.header`
 
 const Label = styled.label`
   display: none;
+  color: ${(props) => props.theme.colors.logo};
+
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     display: flex;
-    color: #333;
     font-size: 1em;
     margin-right: 0.3em;
     padding: 8px 12px;
@@ -21,10 +22,12 @@ const Label = styled.label`
 `;
 
 const Input = styled.input`
-  border: 1px solid #f1f1f1;
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
   width: 100%;
   font-size: 1em;
   padding: 8px 12px;
+  background-color: ${(props) => props.theme.colors.backgroundColor};
+  color: ${(props) => props.theme.colors.textColor};
 `;
 
 const SearchButton = styled.button`

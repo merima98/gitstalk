@@ -9,9 +9,7 @@ import Header from "./Header";
 import { BREAKPOINTS } from "../constants";
 
 const Wrapper = styled.div`
-  overflow-x: hidden;
   background-color: ${(props) => props.theme.colors.wrapperBackground};
-
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     padding: 64px 24px;
   }
@@ -22,14 +20,13 @@ const SideBarContainer = styled.div`
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     position: sticky;
     top: 0;
-
     height: 500px;
   }
 `;
 
 const Name = styled.div`
   margin-bottom: 1rem;
-  border: 2px solid #f7f7f7;
+  border: 2px solid ${(props) => props.theme.colors.borderColor};
   display: flex;
   padding: 16px;
   align-items: center;
@@ -38,7 +35,8 @@ const Name = styled.div`
 
 const Heading = styled.h1`
   font-size: 1rem;
-  color: #333;
+  color: ${(props) => props.theme.colors.logo};
+
   margin-right: 10px;
   padding-left: 16px;
 `;
@@ -46,7 +44,7 @@ const Heading = styled.h1`
 const SideBar = styled.div`
   background-color: ${(props) => props.theme.colors.backgroundColor};
   padding: 10px;
-  border: 2px solid #f7f7f7;
+  border: 2px solid ${(props) => props.theme.colors.borderColor};
   border-radius: 2px;
   margin-bottom: 2px;
   display: flex;
@@ -54,13 +52,13 @@ const SideBar = styled.div`
 `;
 
 const Item = styled.h3`
-  color: #888;
+  font-weight: normal;
+  color: ${(props) => props.theme.colors.textColor};
   font-size: 14px;
 `;
 const Numbers = styled.p`
   color: #555;
   font-size: 15px;
-
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     margin-left: 95px;
   }
@@ -82,13 +80,15 @@ const ListLocation = styled.div`
 `;
 
 const Loacation = styled.h4`
-  color: #888;
+  font-weight: normal;
+  color: ${(props) => props.theme.colors.textColor};
   font-size: 12px;
   margin: 0px 0px 1px 0px;
 `;
 
 const DateData = styled.p`
-  color: #555;
+  color: ${(props) => props.theme.colors.colorTextList};
+
   font-size: 14px;
 `;
 
@@ -113,7 +113,7 @@ const Container = styled.div`
 `;
 
 const Activities = styled.div`
-  border: 2px solid #f7f7f7;
+  border: 1px solid ${(props) => props.theme.colors.borderColor};
   background-color: ${(props) => props.theme.colors.backgroundColor};
 `;
 
@@ -124,7 +124,7 @@ const Events = styled.div`
 `;
 
 const EventsText = styled.p`
-  color: #666;
+  color: ${(props) => props.theme.colors.colorTextList};
   margin: 0;
 `;
 
@@ -222,15 +222,13 @@ const Image = styled.img`
   border-radius: 50%;
 `;
 
-function User(props) {
-  console.log(props);
+function User() {
   const [data, setData] = useState([]);
   const [events, setEvents] = useState([]);
   const [isError, setIsError] = useState(false);
   const params = useParams();
   const [createdDate, setCreatedDate] = useState([]);
   const [lastUpdateDate, setLastUpdateDate] = useState([]);
-  const [languages, setLanguages] = useState([]);
 
   useEffect(async () => {
     try {
@@ -250,18 +248,10 @@ function User(props) {
       setEvents(dataEvents);
       setCreatedDate(format(new Date(data.created_at), "PP"));
       setLastUpdateDate(format(new Date(data.updated_at), "PP"));
-
-      const responseLanguages = await fetch(
-        `https://api.github.com/users/${params.login}/repos`
-      );
-      const dataLanguage = await responseLanguages.json();
-      setLanguages(dataLanguage);
-
-      console.log(languages);
     } catch (error) {
       setIsError(true);
     }
-  }, [setData, params.login]);
+  }, [setData, params.login, setLastUpdateDate, setCreatedDate, setEvents]);
 
   return (
     <Wrapper>

@@ -19,16 +19,14 @@ const Link = styled(NavLink)`
   display: flex;
   justify-content: center;
   text-decoration: none;
-  color: #000;
-
+  color: ${(props) => props.theme.colors.logo};
   font-size: 32px;
   cursor: pointer;
 `;
 
-function Header(props) {
+function Header() {
   const history = useHistory();
   const params = useParams();
-  console.log(props);
 
   function onSubmit(values) {
     history.push(`/${values.login}`);
