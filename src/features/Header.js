@@ -9,7 +9,6 @@ const Wrapper = styled.header`
   margin-bottom: 20px;
   display: flex;
   flex-direction: column;
-
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     flex-direction: row;
     justify-content: space-between;

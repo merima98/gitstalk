@@ -39,7 +39,6 @@ const SearchButton = styled.button`
   height: 36px;
   outline: none;
   width: 100%;
-
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     top: 0;
     width: 93px;

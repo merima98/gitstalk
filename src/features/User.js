@@ -10,31 +10,36 @@ import Footer from "./Footer";
 import { BREAKPOINTS } from "../constants";
 
 const Wrapper = styled.div`
-  padding-top: 32px;
-  margin-bottom: 50px;
+  overflow-x: hidden;
+
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
-    padding-right: 7.5rem;
-    padding-left: 7.5rem;
+    padding: 64px 24px;
   }
 `;
 
 const SideBarContainer = styled.div`
-  color: #000;
-  font-size: 1rem;
+  position: static;
+  @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
+    position: sticky;
+    top: 0;
+
+    height: 500px;
+  }
 `;
 
 const Name = styled.div`
-  background-color: #fff;
   margin-bottom: 1rem;
   border: 2px solid #f7f7f7;
-  padding: 10px;
+  display: flex;
+  padding: 16px;
+  align-items: center;
 `;
 
 const Heading = styled.h1`
   font-size: 1rem;
   color: #333;
-  display: inline;
   margin-right: 10px;
+  padding-left: 16px;
 `;
 
 const SideBar = styled.div`
@@ -43,11 +48,12 @@ const SideBar = styled.div`
   border: 2px solid #f7f7f7;
   border-radius: 2px;
   margin-bottom: 2px;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Item = styled.h3`
   color: #888;
-  display: inline;
   font-size: 14px;
 `;
 const Numbers = styled.p`
@@ -71,7 +77,6 @@ const List = styled.div`
 const ListLocation = styled.div`
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     padding: 0px 0px 0px 2.5px;
-    display: grid;
   }
 `;
 
@@ -98,42 +103,31 @@ const Profile = styled.a`
 `;
 
 const Container = styled.div`
-  display: block;
-
+  display: grid;
+  padding-top: 24px;
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
-    display: grid;
     grid-template-columns: 1fr 2fr;
     grid-gap: 1rem;
   }
 `;
 
 const Activities = styled.div`
-  background-color: #fff;
   border: 2px solid #f7f7f7;
-  padding: 10px;
 `;
 
 const Events = styled.div`
-  color: #000;
-
-  padding: 12px 0px;
-  height: 50px;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid #e5e5e5;
 `;
 
 const EventsText = styled.p`
   color: #666;
-  font-size: 16px;
-  margin-right: 8px;
-  font-family: Roboto;
-
-  padding-bottom: 5px;
-  border-bottom: 1px solid #f7f7f7;
+  margin: 0;
 `;
 
 const EventsLink = styled.a`
   color: #5c75f6;
-  font-size: 16px;
-
   text-decoration: none;
 `;
 function add(
@@ -246,7 +240,7 @@ function User() {
       }
       setData(data);
       const responseEvents = await fetch(
-        `https://api.github.com/users/${params.login}/events`
+        `https://api.github.com/users/${params.login}/events?per_page=20`
       );
       const dataEvents = await responseEvents.json();
       setEvents(dataEvents);
