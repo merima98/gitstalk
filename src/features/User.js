@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { ArrowUpRight } from "react-feather";
+import {
+  ArrowUpRight,
+  Trash2,
+  MessageSquare,
+  GitCommit,
+  Folder,
+  Star,
+  GitPullRequest,
+} from "react-feather";
 import styled from "styled-components";
 import { format } from "date-fns";
 
@@ -144,7 +152,8 @@ function add(
     returnEventTypeValue = (
       <Events>
         <EventsText>
-          Pushed {commitNumber} commit in{" "}
+          <GitCommit style={{ height: "14px", width: "14px" }} /> Pushed{" "}
+          {commitNumber} commit in{" "}
           <EventsLink href={`https://github.com/${repoName}`}>
             {repoName}
           </EventsLink>
@@ -156,7 +165,8 @@ function add(
     returnEventTypeValue = (
       <Events>
         <EventsText>
-          Created a repository{" "}
+          <Folder style={{ height: "14px", width: "14px" }} /> Created a
+          repository{" "}
           <EventsLink href={`https://github.com/${repoName}`}>
             {repoName}
           </EventsLink>
@@ -168,7 +178,8 @@ function add(
     returnEventTypeValue = (
       <Events>
         <EventsText>
-          Created a comment on an issue in{" "}
+          <MessageSquare style={{ height: "14px", width: "14px" }} /> Created a
+          comment on an issue in{" "}
           <EventsLink href={`https://github.com/${repoName}`}>
             {repoName}
           </EventsLink>
@@ -180,7 +191,7 @@ function add(
     returnEventTypeValue = (
       <Events>
         <EventsText>
-          Starred a repo{" "}
+          <Star style={{ height: "14px", width: "14px" }} /> Starred a repo{" "}
           <EventsLink href={`https://github.com/${repoName}`}>
             {repoName}
           </EventsLink>
@@ -192,7 +203,21 @@ function add(
     returnEventTypeValue = (
       <Events>
         <EventsText>
-          Deleted a {branch} {db} from{" "}
+          <Trash2 style={{ height: "14px", width: "14px" }} /> Deleted a{" "}
+          {branch} {db} from{" "}
+          <EventsLink href={`https://github.com/${repoName}`}>
+            {repoName}
+          </EventsLink>
+        </EventsText>
+      </Events>
+    );
+  }
+  if (eventTypeValue === "IssuesEvent") {
+    returnEventTypeValue = (
+      <Events>
+        <EventsText>
+          <Trash2 style={{ height: "14px", width: "14px" }} /> Closed an issue
+          in{" "}
           <EventsLink href={`https://github.com/${repoName}`}>
             {repoName}
           </EventsLink>
@@ -204,7 +229,8 @@ function add(
     returnEventTypeValue = (
       <Events>
         <EventsText>
-          Closed a pull request in{" "}
+          <GitPullRequest style={{ height: "14px", width: "14px" }} /> Closed a
+          pull request in{" "}
           <EventsLink href={`https://github.com/${repoName}`}>
             {repoName}
           </EventsLink>
