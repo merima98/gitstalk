@@ -227,6 +227,7 @@ function User() {
   const params = useParams();
   const [createdDate, setCreatedDate] = useState([]);
   const [lastUpdateDate, setLastUpdateDate] = useState([]);
+  const [languages, setLanguages] = useState([]);
 
   useEffect(async () => {
     try {
@@ -246,6 +247,14 @@ function User() {
       setEvents(dataEvents);
       setCreatedDate(format(new Date(data.created_at), "PP"));
       setLastUpdateDate(format(new Date(data.updated_at), "PP"));
+
+      const responseLanguages = await fetch(
+        `https://api.github.com/users/${params.login}/repos`
+      );
+      const dataLanguage = await responseLanguages.json();
+      setLanguages(dataLanguage);
+
+      console.log(languages);
     } catch (error) {
       setIsError(true);
     }
