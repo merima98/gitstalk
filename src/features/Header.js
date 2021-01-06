@@ -29,7 +29,6 @@ function Header(props) {
   const params = useParams();
   function onSubmit(values) {
     history.push(`/${values.login}`);
-    console.log("Is Loading", props.isLoading);
   }
 
   const login = params.login;

@@ -73,7 +73,6 @@ function SearchForm(props) {
     onSubmit: (vals) => props.onSubmit(vals),
     validationSchema,
   });
-  console.log("Is loadinf from search component", props.isLoading);
   return (
     <Wrapper>
       <Form onSubmit={formik.handleSubmit}>

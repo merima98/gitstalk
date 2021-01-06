@@ -19,6 +19,8 @@ import Header from "./Header";
 import { BREAKPOINTS } from "../constants";
 import { useDarkMode } from "../state";
 
+import axios from "../axios";
+
 const Wrapper = styled.div`
   overflow-x: hidden;
   background-color: ${(props) => props.theme.colors.wrapperBackground};
@@ -282,23 +284,20 @@ function User() {
     try {
       setLoading(true);
 
-      const response = await fetch(
-        `https://api.github.com/users/${params.login}`
-      );
-      const data = await response.json();
+      const response = await axios.get(`/users/${params.login}`);
+      const data = await response.data;
 
       if (data.message === "Not Found") {
         setLoading(false);
-
         setIsError(true);
       }
 
       setData(data);
 
-      const responseEvents = await fetch(
-        `https://api.github.com/users/${params.login}/events?per_page=20`
+      const responseEvents = await axios.get(
+        `/users/${params.login}/events?per_page=20`
       );
-      const dataEvents = await responseEvents.json();
+      const dataEvents = await responseEvents.data;
       setEvents(dataEvents);
 
       setCreatedDate(format(new Date(data.created_at), "PP"));
@@ -307,6 +306,7 @@ function User() {
       setLoading(false);
       setIsError(false);
     } catch (error) {
+      setLoading(false);
       setIsError(true);
     }
   }, [
