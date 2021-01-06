@@ -17,14 +17,14 @@ import { format } from "date-fns";
 import NotFound from "./NotFound";
 import Header from "./Header";
 import { BREAKPOINTS } from "../constants";
-
 import { useDarkMode } from "../state";
 
 const Wrapper = styled.div`
+  overflow-x: hidden;
   background-color: ${(props) => props.theme.colors.wrapperBackground};
-
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     padding: 64px 24px;
+    overflow-x: visible;
   }
 `;
 
