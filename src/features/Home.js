@@ -13,11 +13,12 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-color: ${(props) => props.theme.colors.wrapperBackground};
 `;
 
 const Logo = styled.div`
   margin-bottom: 0.75em;
-
+  color: ${(props) => props.theme.colors.logo};
   font-size: 1.5rem;
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     font-size: 2rem;
@@ -26,7 +27,7 @@ const Logo = styled.div`
 
 const Label = styled.label`
   margin-bottom: 4em;
-  color: #333;
+  color: ${(props) => props.theme.colors.logo};
   font-size: 0.75em;
   display: flex;
 `;

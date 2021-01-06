@@ -8,6 +8,8 @@ import {
   Folder,
   Star,
   GitPullRequest,
+  Moon,
+  Sun,
 } from "react-feather";
 import styled from "styled-components";
 import { format } from "date-fns";
@@ -18,6 +20,7 @@ import { BREAKPOINTS } from "../constants";
 
 const Wrapper = styled.div`
   background-color: ${(props) => props.theme.colors.wrapperBackground};
+
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     padding: 64px 24px;
   }
@@ -109,6 +112,7 @@ const Profile = styled.a`
   text-decoration: none;
   color: #333;
   cursor: pointer;
+  margin-right: 1rem;
 `;
 
 const Container = styled.div`
@@ -248,7 +252,15 @@ const Image = styled.img`
   border-radius: 50%;
 `;
 
-function User() {
+const Temp = styled.div`
+  display: flex;
+  flex-direction: row;
+  grid-gap: 2px;
+  justify-content: center;
+  background-color: ${(props) => props.theme.colors.backgroundColor};
+`;
+
+function User(props) {
   const [data, setData] = useState([]);
   const [events, setEvents] = useState([]);
   const [isError, setIsError] = useState(false);
@@ -290,14 +302,39 @@ function User() {
             <Name>
               <Image src={data.avatar_url} />
               <Heading>{data.name}</Heading>
-              <Profile
-                href={`https://github.com/${data.login}`}
-                target="_blank"
-              >
-                <ArrowUpRight
-                  style={{ width: "14px", height: "14px", color: "#5c75f6" }}
-                />
-              </Profile>
+              <Temp>
+                <Profile
+                  href={`https://github.com/${data.login}`}
+                  target="_blank"
+                >
+                  <ArrowUpRight
+                    style={{ width: "14px", height: "14px", color: "#5c75f6" }}
+                  />
+                </Profile>
+                {props.isDarkMode ? (
+                  <Sun
+                    style={{ cursor: "pointer", color: "#fff" }}
+                    onClick={() => {
+                      props.setIsDarkMode(!props.isDarkMode);
+                      window.localStorage.setItem(
+                        "darkMode",
+                        !props.isDarkMode
+                      );
+                    }}
+                  />
+                ) : (
+                  <Moon
+                    style={{ cursor: "pointer", color: "#000" }}
+                    onClick={() => {
+                      props.setIsDarkMode(!props.isDarkMode);
+                      window.localStorage.setItem(
+                        "darkMode",
+                        !props.isDarkMode
+                      );
+                    }}
+                  />
+                )}
+              </Temp>
             </Name>
             <SideBar>
               <List>

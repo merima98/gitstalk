@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Edit3, Moon, Sun } from "react-feather";
+import { Edit3 } from "react-feather";
 
 import { BREAKPOINTS } from "../constants";
 
@@ -8,6 +8,7 @@ const Wrapper = styled.div`
   letter-spacing: 0.01em;
   text-align: center;
   background-color: ${(props) => props.theme.colors.wrapperBackground};
+  margin-bottom: 1rem;
 `;
 
 const Paragrapf = styled.p`
@@ -42,41 +43,15 @@ const LabelLink = styled.span`
   align-items: center;
 `;
 
-const Temp = styled.div`
-  display: flex;
-  flex-direction: row;
-  grid-gap: 2px;
-  justify-content: center;
-  padding-bottom: 1rem;
-  background-color: ${(props) => props.theme.colors.wrapperBackground};
-`;
-
-function Footer(props) {
+function Footer() {
   return (
     <Wrapper>
       <Paragrapf>Stalking? I call it social research.</Paragrapf>
-      <Temp>
-        <Link href="https://github.com/merima98/gitstalk">
-          <LabelLink>
-            <Edit3 /> merima98/gitstalk
-          </LabelLink>
-        </Link>
-        {props.isDarkMode ? (
-          <Sun
-            style={{ cursor: "pointer", color: "#fff" }}
-            onClick={() => {
-              props.setIsDarkMode(!props.isDarkMode);
-            }}
-          />
-        ) : (
-          <Moon
-            style={{ cursor: "pointer", color: "#000" }}
-            onClick={() => {
-              props.setIsDarkMode(!props.isDarkMode);
-            }}
-          />
-        )}
-      </Temp>
+      <Link href="https://github.com/merima98/gitstalk">
+        <LabelLink>
+          <Edit3 /> merima98/gitstalk
+        </LabelLink>
+      </Link>
     </Wrapper>
   );
 }

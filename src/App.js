@@ -8,8 +8,16 @@ import Footer from "./features/Footer";
 import Home from "./features/Home";
 import { darkTheme, lightTheme } from "./themes/themes";
 
+function getItem(key) {
+  try {
+    return JSON.parse(window.localStorage.getItem(key) || "");
+  } catch (err) {
+    return false;
+  }
+}
+
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(getItem("darkMode"));
   const theme = isDarkMode ? darkTheme : lightTheme;
   return (
     <ThemeProvider theme={theme}>
@@ -19,10 +27,12 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route
             path="/:login"
-            component={() => <User isDarkMode={setIsDarkMode} />}
+            component={() => (
+              <User setIsDarkMode={setIsDarkMode} isDarkMode={isDarkMode} />
+            )}
           />
         </Switch>
-        <Footer setIsDarkMode={setIsDarkMode} isDarkMode={isDarkMode} />
+        <Footer />
       </BrowserRouter>
     </ThemeProvider>
   );
