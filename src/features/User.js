@@ -38,7 +38,7 @@ const SideBarContainer = styled.div`
 `;
 
 const Name = styled.div`
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
   border: 2px solid ${(props) => props.theme.colors.borderColor};
   display: flex;
   padding: 16px;
@@ -59,7 +59,7 @@ const SideBar = styled.div`
   padding: 10px;
   border: 2px solid ${(props) => props.theme.colors.borderColor};
   border-radius: 2px;
-  margin-bottom: 2px;
+  margin-bottom: 0.5rem;
   display: flex;
   flex-direction: column;
 `;
@@ -286,6 +286,11 @@ function User() {
       if (data.message === "Not Found") {
         setIsError(true);
       }
+
+      if (data.message !== "Not Found") {
+        setIsError(false);
+      }
+
       setData(data);
       const responseEvents = await fetch(
         `https://api.github.com/users/${params.login}/events?per_page=20`

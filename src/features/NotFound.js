@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-
 import { AlertCircle } from "react-feather";
 
 import { BREAKPOINTS } from "../constants";
@@ -26,7 +25,7 @@ const ErrorMessage = styled.div`
 const Message = styled.h2`
   font-size: 1.5em;
   letter-spacing: 0.01em;
-  color: ${(props) => props.theme.colors.textColor};
+  color: ${(props) => props.theme.colors.logo};
   font-family: Roboto;
 `;
 
@@ -34,7 +33,7 @@ const SecondMessage = styled.h3`
   line-height: 1.5em;
   font-size: 1em;
   font-weight: normal;
-  color: ${(props) => props.theme.colors.textColor};
+  color: ${(props) => props.theme.colors.logo};
   font-family: Roboto;
 `;
 

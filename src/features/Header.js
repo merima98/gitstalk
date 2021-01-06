@@ -27,7 +27,6 @@ const Link = styled(NavLink)`
 function Header() {
   const history = useHistory();
   const params = useParams();
-
   function onSubmit(values) {
     history.push(`/${values.login}`);
   }

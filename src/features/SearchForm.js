@@ -61,6 +61,7 @@ const validationSchema = Yup.object().shape({
 
 function SearchForm(props) {
   const { username } = props;
+
   const formik = useFormik({
     initialValues: {
       login: username || "",
