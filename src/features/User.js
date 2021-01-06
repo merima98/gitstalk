@@ -18,6 +18,8 @@ import NotFound from "./NotFound";
 import Header from "./Header";
 import { BREAKPOINTS } from "../constants";
 
+import { useDarkMode } from "../state";
+
 const Wrapper = styled.div`
   background-color: ${(props) => props.theme.colors.wrapperBackground};
 
@@ -260,13 +262,19 @@ const Temp = styled.div`
   background-color: ${(props) => props.theme.colors.backgroundColor};
 `;
 
-function User(props) {
+function User() {
   const [data, setData] = useState([]);
   const [events, setEvents] = useState([]);
   const [isError, setIsError] = useState(false);
   const params = useParams();
   const [createdDate, setCreatedDate] = useState([]);
   const [lastUpdateDate, setLastUpdateDate] = useState([]);
+  const setIsDarkMode = useDarkMode((state) => state.setIsDarkMode);
+  const isDarkMode = useDarkMode((state) => state.isDarkMode);
+
+  function onChange() {
+    setIsDarkMode(!isDarkMode);
+  }
 
   useEffect(async () => {
     try {
@@ -311,27 +319,15 @@ function User(props) {
                     style={{ width: "14px", height: "14px", color: "#5c75f6" }}
                   />
                 </Profile>
-                {props.isDarkMode ? (
+                {isDarkMode ? (
                   <Sun
                     style={{ cursor: "pointer", color: "#fff" }}
-                    onClick={() => {
-                      props.setIsDarkMode(!props.isDarkMode);
-                      window.localStorage.setItem(
-                        "darkMode",
-                        !props.isDarkMode
-                      );
-                    }}
+                    onClick={onChange}
                   />
                 ) : (
                   <Moon
                     style={{ cursor: "pointer", color: "#000" }}
-                    onClick={() => {
-                      props.setIsDarkMode(!props.isDarkMode);
-                      window.localStorage.setItem(
-                        "darkMode",
-                        !props.isDarkMode
-                      );
-                    }}
+                    onClick={onChange}
                   />
                 )}
               </Temp>
