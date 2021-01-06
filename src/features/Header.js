@@ -24,11 +24,12 @@ const Link = styled(NavLink)`
   cursor: pointer;
 `;
 
-function Header() {
+function Header(props) {
   const history = useHistory();
   const params = useParams();
   function onSubmit(values) {
     history.push(`/${values.login}`);
+    console.log("Is Loading", props.isLoading);
   }
 
   const login = params.login;
@@ -38,7 +39,11 @@ function Header() {
       <Link exact to="/">
         GITSTALK
       </Link>
-      <SearchForm username={login} onSubmit={onSubmit} />
+      <SearchForm
+        isLoading={props.isLoading}
+        username={login}
+        onSubmit={onSubmit}
+      />
     </Wrapper>
   );
 }

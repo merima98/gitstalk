@@ -4,9 +4,12 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 
 import { BREAKPOINTS } from "../constants";
+import Spinner from "./Spinner";
 
 const Wrapper = styled.header`
   align-items: center;
+  display: flex;
+  flex-direction: column;
 `;
 
 const Label = styled.label`
@@ -50,9 +53,10 @@ const SearchButton = styled.button`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-
+  margin-bottom: 1rem;
   @media (min-width: ${BREAKPOINTS.SMALL_DEVICES}) {
     flex-direction: row;
+    margin-bottom: 1rem;
   }
 `;
 const validationSchema = Yup.object().shape({
@@ -69,7 +73,7 @@ function SearchForm(props) {
     onSubmit: (vals) => props.onSubmit(vals),
     validationSchema,
   });
-
+  console.log("Is loadinf from search component", props.isLoading);
   return (
     <Wrapper>
       <Form onSubmit={formik.handleSubmit}>
@@ -82,6 +86,7 @@ function SearchForm(props) {
         />
         <SearchButton type="submit">Search</SearchButton>
       </Form>
+      {props.isLoading ? <Spinner /> : null}
     </Wrapper>
   );
 }

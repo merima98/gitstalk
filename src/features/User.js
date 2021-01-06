@@ -272,39 +272,55 @@ function User() {
   const setIsDarkMode = useDarkMode((state) => state.setIsDarkMode);
   const isDarkMode = useDarkMode((state) => state.isDarkMode);
 
+  const [isLoading, setLoading] = useState(true);
+
   function onChange() {
     setIsDarkMode(!isDarkMode);
   }
 
   useEffect(async () => {
     try {
+      setLoading(true);
+
       const response = await fetch(
         `https://api.github.com/users/${params.login}`
       );
       const data = await response.json();
 
       if (data.message === "Not Found") {
+        setLoading(false);
+
         setIsError(true);
       }
 
       setData(data);
+
       const responseEvents = await fetch(
         `https://api.github.com/users/${params.login}/events?per_page=20`
       );
       const dataEvents = await responseEvents.json();
       setEvents(dataEvents);
+
       setCreatedDate(format(new Date(data.created_at), "PP"));
       setLastUpdateDate(format(new Date(data.updated_at), "PP"));
 
+      setLoading(false);
       setIsError(false);
     } catch (error) {
       setIsError(true);
     }
-  }, [setData, params.login, setLastUpdateDate, setCreatedDate, setEvents]);
+  }, [
+    setData,
+    params.login,
+    setLastUpdateDate,
+    setCreatedDate,
+    setEvents,
+    setLoading,
+  ]);
 
   return (
     <Wrapper>
-      <Header username={params.login} />
+      <Header isLoading={isLoading} username={params.login} />
       {isError ? (
         <NotFound />
       ) : (
