@@ -287,10 +287,6 @@ function User() {
         setIsError(true);
       }
 
-      if (data.message !== "Not Found") {
-        setIsError(false);
-      }
-
       setData(data);
       const responseEvents = await fetch(
         `https://api.github.com/users/${params.login}/events?per_page=20`
@@ -299,6 +295,8 @@ function User() {
       setEvents(dataEvents);
       setCreatedDate(format(new Date(data.created_at), "PP"));
       setLastUpdateDate(format(new Date(data.updated_at), "PP"));
+
+      setIsError(false);
     } catch (error) {
       setIsError(true);
     }
