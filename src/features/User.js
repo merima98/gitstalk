@@ -19,7 +19,7 @@ import Header from "./Header";
 import { BREAKPOINTS } from "../constants";
 import { useDarkMode } from "../state";
 
-import axios from "../axios";
+import axios from "../api/axios";
 
 const Wrapper = styled.div`
   overflow-x: hidden;
