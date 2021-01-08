@@ -14,8 +14,8 @@ import {
 import styled from "styled-components";
 import { format } from "date-fns";
 
-import NotFound from "./NotFound";
-import Header from "./Header";
+import NotFound from "../components/NotFound";
+import Header from "../components/Header";
 import { BREAKPOINTS } from "../constants";
 import { useDarkMode } from "../state";
 

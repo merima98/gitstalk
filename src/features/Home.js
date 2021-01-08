@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useHistory } from "react-router";
 import { GitHub } from "react-feather";
 
-import SearchForm from "./SearchForm";
+import SearchForm from "../components/SearchForm";
 import { BREAKPOINTS } from "../constants";
 
 const Wrapper = styled.div`

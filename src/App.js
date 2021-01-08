@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 
 import GlobalStyle from "./globalStyles";
 import User from "./features/User";
-import Footer from "./features/Footer";
+import Footer from "./components/Footer";
 import Home from "./features/Home";
 import { darkTheme, lightTheme } from "./themes/themes";
 import { useDarkMode } from "./state";
